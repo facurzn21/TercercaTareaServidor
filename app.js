@@ -6,15 +6,15 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-// const mongoURI = "mongodb+srv://alejandrorp:" + process.env.MONGO_ATLAS_PW + "@cluster0.3snja.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-/*
+ const mongoURI = "mongodb+srv://ServerTerceraTarea:Raizen2121212035@cluster0.ca24q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to mongodb');
   }).catch((error) => {
     console.log('Error connecting to mongo ', error);
   });
-*/
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
