@@ -1,0 +1,18 @@
+{
+  "name": "tercera-tarea-servidor",
+  "version": "1.0.0",
+  "description": "tarea Senpai",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "nodemon server.js"
+  },
+  "author": "Facundo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
