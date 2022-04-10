@@ -11,6 +11,8 @@ const corsOptions = {
 
 const userRoutes = require('./rutas/user');
 
+const trainersRoutes = require('./rutas/trainers');
+
 const app = express();
 const mongoURI = "mongodb+srv://ServerTerceraTarea:Raizen2121212035@cluster0.ca24q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
@@ -34,6 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/user', userRoutes);
+app.use('/api/trainers', trainersRoutes);
 
 
 module.exports = app;
