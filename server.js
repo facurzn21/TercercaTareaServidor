@@ -1,4 +1,4 @@
-const debug  = require('debug')('node-angular');
+const debug  = require('debug')('node-react');
 const http = require('http');
 const app = require('./app');
 
