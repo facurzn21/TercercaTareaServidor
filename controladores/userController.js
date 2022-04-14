@@ -25,14 +25,17 @@ exports.registro = (req, res, next) => {
 exports.login = (req, res, next) => {
   let fetchedUser;
   User.findOne({ email: req.body.email }).then(user => {
+    console.log(user);
     if(!user){
       return res.status(401).json({
         message: 'Auth failed'
       });
     }
     fetchedUser = user;
+    console.log(fetchedUser);
     return bcrypt.compare(req.body.password, user.password);
   }).then(result => {
+    console.log(result);
     if(!result){
       return res.status(401).json({
         message: 'Auth failed'
@@ -40,7 +43,7 @@ exports.login = (req, res, next) => {
     }
     const token = jwt.sign(
       {email: fetchedUser.email, userId: fetchedUser._id},//_id es porque en mongodb se crea con "_"
-      process.env.JWT_KEY,
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
       {expiresIn: '1h'}
     );
     res.status(200).json({
@@ -49,6 +52,7 @@ exports.login = (req, res, next) => {
       userId: fetchedUser._id
     });
   }).catch(error => {
+    console.log(error)
     return res.status(401).json({
       message: 'Invalid auth credentials'
     });
