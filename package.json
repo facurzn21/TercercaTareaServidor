@@ -4,7 +4,7 @@
   "description": "tarea Senpai",
   "main": "index.js",
   "scripts": {
-    "start:server": "nodemon server.js"
+    "start:server": "nodemon server.js" 
   },
   "author": "Facundo",
   "license": "ISC",

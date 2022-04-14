@@ -3,8 +3,8 @@ const bcrypt = require('bcrypt');
 const User = require('../modelos/user');
 
 
-exports.registro = (req, res, next) => {
-    bcrypt.hash(req.body.password, 16).then(hash => {
+exports.registro = (req, res, next) => { 
+    bcrypt.hash(req.body.password, 16).then(hash => { // uso de bcrypt para encriptar la contraseña 
       const user = new User({
         email: req.body.email,
         password: hash
@@ -22,18 +22,18 @@ exports.registro = (req, res, next) => {
     });
 }
 
-exports.login = (req, res, next) => {
+exports.login = (req, res, next) => { // se busca el usuario con el correo que ingresa
   let fetchedUser;
   User.findOne({ email: req.body.email }).then(user => {
     console.log(user);
     if(!user){
       return res.status(401).json({
-        message: 'Auth failed'
+        message: 'Auth failed' // sino se encuentra el usuario se devuelve error
       });
     }
-    fetchedUser = user;
+    fetchedUser = user;  // si se encuentra usuario se guarda en una variable
     console.log(fetchedUser);
-    return bcrypt.compare(req.body.password, user.password);
+    return bcrypt.compare(req.body.password, user.password); // compara contraseña de logeo con la contraseña hash de la BD
   }).then(result => {
     console.log(result);
     if(!result){
@@ -41,7 +41,7 @@ exports.login = (req, res, next) => {
         message: 'Auth failed'
       });
     }
-    const token = jwt.sign(
+    const token = jwt.sign(  // se devuelve token cuando se logea
       {email: fetchedUser.email, userId: fetchedUser._id},//_id es porque en mongodb se crea con "_"
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
       {expiresIn: '1h'}
